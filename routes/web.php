@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,12 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/redirects', [HomeController::class, 'redirects']);
+
+// ? Admin routes
+Route::get('/users', [AdminController::class, 'users']);
+Route::get('/deleteuser/{id}', [AdminController::class, 'deleteuser']);
+Route::get('/foodmenu', [AdminController::class, 'foodmenu']);
+Route::post('/makefood', [AdminController::class, 'makefood']);
 
 Route::middleware([
     'auth:sanctum',
