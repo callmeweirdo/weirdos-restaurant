@@ -103,7 +103,7 @@ class AdminController extends Controller
 
 
     public function foodchefs(){
-        return view('admin.foodchefs');
+        return view('admin.foodchefs')->with('foodchefs', Foodchef::orderBy('created_at', 'DESC')->get());
     }
 
     public function makechef(Request $request){
@@ -125,6 +125,37 @@ class AdminController extends Controller
             ]);
 
             return redirect()->back();
+    }
+
+    public function editchef($id){
+
+        return view('admin.editchef')->with('chef', Foodchef::where('id', $id)->first());
+    }
+
+    public function updatechef(Request $request, $id){
+        $image = $request->image;
+        $imageName = uniqid().'-'.$request->name.'.'.$image->extension();
+
+        $path = public_path().'/chefimages/';
+
+        $image->move($path, $imageName);
+
+
+        Foodchef::where('id', $id)
+            ->update([
+            'name' => $request->name,
+            'specialty' => $request->specialty,
+            'image' => $imageName,
+            ]);
+
+            return redirect()->back();
+    }
+
+    public function deletechef($id){
+        $chef = Foodchef::find($id);
+        $chef->delete();
+
+        return redirect()->back();
     }
 
 }

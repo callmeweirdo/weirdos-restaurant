@@ -10,7 +10,7 @@ use App\Models\Foodchef;
 class HomeController extends Controller
 {
     public function index(){
-        return view('home')->with('foods', Food::orderBy('created_at', 'Desc'))
+        return view('home')->with('foods', Food::orderBy('created_at', 'Desc')->get())
         ->with('foodchefs', Foodchef::orderBy('created_at', 'Desc')->get());
     }
 
@@ -21,7 +21,17 @@ class HomeController extends Controller
         if($usertype == '1'){
             return view('admin.index');
         }else{
-            return view('home')->with('foods', Food::orderBy('created_at', 'Desc')->get());
+            return view('home')->with('foods', Food::orderBy('created_at', 'Desc')->get())
+        ->with('foodchefs', Foodchef::orderBy('created_at', 'Desc')->get());
+        }
+    }
+
+
+    public function addtocart(){
+        if(Auth::id()){
+            return redirect()->back();
+        }else{
+            return redirect('/login');
         }
     }
 

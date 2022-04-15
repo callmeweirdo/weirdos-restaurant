@@ -33,6 +33,11 @@ Route::post('reservation', [AdminController::class, 'reservation']);
 Route::get('viewreservations', [AdminController::class, 'viewreservations']);
 Route::get('foodchefs', [AdminController::class, 'foodchefs']);
 Route::post('makechef', [AdminController::class, 'makechef']);
+Route::get('editchef/{id}', [AdminController::class, 'editchef']);
+Route::post('updatechef/{id}', [AdminController::class, 'updatechef'] );
+Route::get('deletechef/{id}', [AdminController::class, 'deletechef']);
+Route::post('addtocart', [HomeController::class, 'addtocart']);
+
 
 Route::middleware([
     'auth:sanctum',
