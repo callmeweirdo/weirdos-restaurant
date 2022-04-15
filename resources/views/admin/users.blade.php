@@ -23,7 +23,8 @@
 
       <!-- partial -->
 
-      <div class="table-responsive">
+      <div class="container mt-5 mx-5 ">
+          <div class="table-responsive container">
         <table class="table">
           <thead>
             <tr>
@@ -69,6 +70,8 @@
           </tbody>
         </table>
       </div>
+      </div>
+
 
       <!-- page-body-wrapper ends -->
     </div>
